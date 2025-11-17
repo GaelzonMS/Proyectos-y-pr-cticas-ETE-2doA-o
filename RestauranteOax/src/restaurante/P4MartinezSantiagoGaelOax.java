@@ -78,8 +78,9 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         etiqAtole.setIcon(atole);
         etiqAtole.setBounds(30,80, 500, 500);
         etiqAtole.setAlignmentX(LEFT_ALIGNMENT);
-        nomAtole = new JLabel("Atoles (chocolate, arroz, guayaba)");
+        nomAtole = new JLabel("Atoles \n (chocolate, arroz, guayaba)");
         nomAtole.setFont(fuenteSerief);
+        nomAtole.setOpaque(true);
         nomAtole.setBackground(colorCarnita);
         panelMenus.add(etiqAtole);
         panelMenus.add(nomAtole);
@@ -88,13 +89,23 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         etiqTamal = new JLabel(); //tamales oaxaqueños
         etiqTamal.setIcon(tamalOax);
         etiqTamal.setBounds(30,80, 500, 500);
+        nomTamal = new JLabel("Tamales Oaxaqueños \n (verde, mole, dulce)");
+        nomTamal.setFont(fuenteSerief);
+        nomTamal.setOpaque(true);
+        nomTamal.setBackground(colorCarnita);
         panelMenus.add(etiqTamal);
+        panelMenus.add(nomTamal);
         panelMenus.add(butTamal);
 
         etiqTlay = new JLabel(); //tlayudas
         etiqTlay.setIcon(tlayuyas);
         etiqTlay.setBounds(30,80, 500, 500);
+        nomTlay = new JLabel("Tlayudas");
+        nomTlay.setFont(fuenteSerief);
+        nomTlay.setOpaque(true);
+        nomTlay.setBackground(colorCarnita);
         panelMenus.add(etiqTlay);
+        panelMenus.add(nomTlay);
         panelMenus.add(butTlay);
 
         ventana.add(panelMenus);
