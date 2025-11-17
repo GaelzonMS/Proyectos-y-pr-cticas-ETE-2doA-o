@@ -32,7 +32,8 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container ventana = getContentPane();
         ventana.setBackground(new Color(1, 101, 231));
-        setLayout(null);
+        ventana.setLayout(new FlowLayout());
+        //setLayout(null);
 
         // instanciamos colores y fuentes a ocupar
         Font fuenteSerief  = new Font("Serief",Font.BOLD,14);
