@@ -25,8 +25,8 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     private JLabel etiqSopa, etiqCecina, etiquChapulin, etiqComidas, nomSopa, nomCecina, nomChapulin;
     private JButton butSopa, butCecina, butChapulin;
 
-    private ImageIcon panes, tasajo, chocolate;
-    private JLabel etiqPanes, etiqTasajo, etiqChocolate, etiqCenas, nomPanes, nomTasajo, nomChocolate;
+    private ImageIcon tasajo;
+    private JLabel etiqTasajo, etiqCenas, nomPanes, nomTasajo, nomChocolate;
     private JButton butPanes, butTasajo, butChocolate;
 
     public static void main(String[] args) {
@@ -54,7 +54,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus = new JPanel();
         panelMenus.setPreferredSize(new Dimension(500, 750));
         panelMenus.setBackground(new Color(250, 155, 40));
-        panelMenus.setBounds(120, 35, 580, 620);
+        panelMenus.setBounds(120, 5, 580, 675);
         panelMenus.setLayout(null);
 
         //---------------Espacio de desayunos------------------
@@ -217,45 +217,35 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
 
         etiqCenas = new JLabel("Cenas");
         etiqCenas.setFont(fuenteSerief30);
-        etiqCenas.setBounds(80, 40, 250, 20);
+        etiqCenas.setBounds(250, 472, 100, 35);
         etiqCenas.setAlignmentX(CENTER_ALIGNMENT);
         etiqCenas.setOpaque(true);
         etiqCenas.setBackground(colorCarnita);
         panelMenus.add(etiqCenas);
 
-        //instanciamos imagenes de las comidas
-        panes = new ImageIcon(new ImageIcon("panes.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+        //instanciamos imagenes de las cenas
         tasajo = new ImageIcon(new ImageIcon("tasajo.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
-        chocolate = new ImageIcon(new ImageIcon("chocoalte.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
-
-        etiqPanes = new JLabel(); // img panes
-        etiqPanes.setIcon(panes);
-        etiqPanes.setBounds(30,80, 500, 500);
-        etiqPanes.setAlignmentX(LEFT_ALIGNMENT);
-        panelMenus.add(etiqPanes);
 
         etiqTasajo = new JLabel(); // img tasajo
         etiqTasajo.setIcon(tasajo);
-        etiqTasajo.setBounds(30,80, 500, 500);
+        etiqTasajo.setBounds(410,535, 128, 96);
         panelMenus.add(etiqTasajo);
-
-        etiqChocolate = new JLabel(); // img chocolate
-        etiqChocolate.setIcon(chocolate);
-        etiqChocolate.setBounds(30,80, 500, 500);
-        panelMenus.add(etiqChocolate);
 
         // instanciamos botones para ordenar cada comida
         butPanes = new JButton("Ordenar");
         butPanes.setFont(fuenteSerief);
         butPanes.setBackground(colorVerdeOscuro);
+        butPanes.setBounds(200, 531, 100, 25);
         butPanes.addActionListener(this);
         butTasajo = new JButton("Ordenar");
         butTasajo.setFont(fuenteSerief);
         butTasajo.setBackground(colorVerdeOscuro);
+        butTasajo.setBounds(200, 565, 100, 25);
         butTasajo.addActionListener(this);
         butChocolate = new JButton("Ordenar");
         butChocolate.setFont(fuenteSerief);
         butChocolate.setBackground(colorVerdeOscuro);
+        butChocolate.setBounds(200, 599, 100, 25);
         butChocolate.addActionListener(this);
 
         // botones y etiquetas de cada platillo
@@ -263,6 +253,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         nomPanes.setFont(fuenteSerief);
         nomPanes.setOpaque(true);
         nomPanes.setBackground(colorCarnita);
+        nomPanes.setBounds(40, 531, 140, 22);
         panelMenus.add(nomPanes);
         panelMenus.add(butPanes);
 
@@ -270,6 +261,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         nomTasajo.setFont(fuenteSerief);
         nomTasajo.setOpaque(true);
         nomTasajo.setBackground(colorCarnita);
+        nomTasajo.setBounds(40, 565, 140, 22);
         panelMenus.add(nomTasajo);
         panelMenus.add(butTasajo);
 
@@ -277,6 +269,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         nomChocolate.setFont(fuenteSerief);
         nomChocolate.setOpaque(true);
         nomChocolate.setBackground(colorCarnita);
+        nomChocolate.setBounds(40, 599, 140, 22);
         panelMenus.add(nomChocolate);
         panelMenus.add(butChocolate);
 
