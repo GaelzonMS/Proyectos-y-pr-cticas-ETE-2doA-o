@@ -16,8 +16,10 @@ import javax.swing.*;
 public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener {
 
     private JPanel panelMenus, panelComida;
+
+    //objetos para el desayuno
     private ImageIcon atole, tamalOax, tlayuyas;
-    private JLabel etiqAtole, etiqTamal, etiqTlay, etiquetaDesayuno, nomAtole, nomTamal, nomTlay;
+    private JLabel etiqAtole, etiqTamal, etiqTlay, etiquetaDesayuno, nomAtole, nomTamal, nomTlay, tiposAtole, tiposTamal;
     private JButton butAtole, butTamal, butTlay;
 
     // Cuenta y precios
@@ -28,6 +30,16 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     private JTextArea areaCuenta;
     private JLabel etiquetaTotalCuenta;
     private JButton butLimpiar, butPagar;
+
+    //objetos para las comidas
+    private ImageIcon sopaPiedra, cecina, chapulines;
+    private JLabel etiqSopa, etiqCecina, etiquChapulin, etiqComidas, nomSopa, nomCecina, nomChapulin;
+    private JButton butSopa, butCecina, butChapulin;
+
+    //objetos para la cena
+    private ImageIcon tasajo;
+    private JLabel etiqTasajo, etiqCenas, nomPanes, nomTasajo, nomChocolate;
+    private JButton butPanes, butTasajo, butChocolate;
 
     public static void main(String[] args) {
         P4MartinezSantiagoGaelOax marco = new P4MartinezSantiagoGaelOax();
@@ -41,7 +53,9 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container ventana = getContentPane();
         ventana.setBackground(new Color(1, 101, 231));
-        ventana.setLayout(new FlowLayout());
+        //ventana.setLayout(new FlowLayout());
+        
+        setLayout(null);
 
         // instanciamos colores y fuentes a ocupar
         Font fuenteSerief  = new Font("Serief",Font.BOLD,14);
@@ -53,92 +67,234 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus = new JPanel();
         panelMenus.setPreferredSize(new Dimension(500, 750));
         panelMenus.setBackground(new Color(250, 155, 40));
+        panelMenus.setBounds(120, 5, 580, 675);
+        panelMenus.setLayout(null);
 
         //---------------Espacio de desayunos------------------
         etiquetaDesayuno = new JLabel("Desayunos");
         etiquetaDesayuno.setFont(fuenteSerief30);
-        etiquetaDesayuno.setBounds(80, 40, 250, 20);
+        etiquetaDesayuno.setBounds(210, 18, 170, 35);
         etiquetaDesayuno.setAlignmentX(CENTER_ALIGNMENT);
         etiquetaDesayuno.setOpaque(true);
         etiquetaDesayuno.setBackground(colorCarnita);
         panelMenus.add(etiquetaDesayuno);
 
         //instanciamos imagenes de los desayunos
-        tamalOax = new ImageIcon(new ImageIcon("tamalesOax.jpg").getImage().getScaledInstance(160, 120, Image.SCALE_DEFAULT));
-        atole = new ImageIcon(new ImageIcon("atoles.jpg").getImage().getScaledInstance(160, 120, Image.SCALE_DEFAULT));
-        tlayuyas = new ImageIcon(new ImageIcon("tlayudas.jpg").getImage().getScaledInstance(160, 120, Image.SCALE_DEFAULT));
+        tamalOax = new ImageIcon(new ImageIcon("tamalesOax.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+        atole = new ImageIcon(new ImageIcon("atoles.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+        tlayuyas = new ImageIcon(new ImageIcon("tlayudas.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
 
-         //instanciamos botones de los desayunos
+        etiqAtole = new JLabel(); // img atoles
+        etiqAtole.setIcon(atole);
+        etiqAtole.setBounds(50,65, 128, 96);
+        etiqAtole.setAlignmentX(LEFT_ALIGNMENT);
+        panelMenus.add(etiqAtole);
+
+        etiqTamal = new JLabel(); // img tamales oaxaqueños
+        etiqTamal.setIcon(tamalOax);
+        etiqTamal.setBounds(230,65, 128, 96);
+        panelMenus.add(etiqTamal);
+
+        etiqTlay = new JLabel(); //tlayudas
+        etiqTlay.setIcon(tlayuyas);
+        etiqTlay.setBounds(410,65, 128, 96);
+        panelMenus.add(etiqTlay);
+
+        // instanciamos botones para ordenar cada desayuno
         butAtole = new JButton("Ordenar");
         butAtole.setFont(fuenteSerief);
         butAtole.setBackground(colorVerdeOscuro);
-        butAtole.addActionListener(this);
-        butTamal = new JButton("Ordenar");
-        butTamal.setFont(fuenteSerief);
-        butTamal.setBackground(colorVerdeOscuro);
-        butTamal.addActionListener(this);
-        butTlay = new JButton("Ordenar");
-        butTlay.setFont(fuenteSerief);
-        butTlay.setBackground(colorVerdeOscuro);
-        butTlay.addActionListener(this);
-
-        // botones y etiquetas de imagen de cada platillo
-        butAtole = new JButton("Ordenar");
-        butAtole.setFont(fuenteSerief);
-        butAtole.setBackground(colorVerdeOscuro);
-        butAtole.addActionListener(this);
+        butAtole.setBounds(68, 220, 100, 25);
         butAtole.setActionCommand("ATOLE");
-
+        butAtole.addActionListener(this);
         butTamal = new JButton("Ordenar");
         butTamal.setFont(fuenteSerief);
         butTamal.setBackground(colorVerdeOscuro);
+        butTamal.setBounds(248, 220, 100, 25);
         butTamal.addActionListener(this);
         butTamal.setActionCommand("TAMAL");
-
         butTlay = new JButton("Ordenar");
         butTlay.setFont(fuenteSerief);
         butTlay.setBackground(colorVerdeOscuro);
+        butTlay.setBounds(428, 220, 100, 25);
         butTlay.addActionListener(this);
         butTlay.setActionCommand("TLAYUDA");
 
-        // item Atole
-        JPanel item = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        etiqAtole = new JLabel();
-        etiqAtole.setIcon(atole);
-        nomAtole = new JLabel("Atoles (chocolate, arroz, guayaba) - $" + String.format("%.2f", precioAtole));
+        // botones y etiquetas de cada platillo
+        nomAtole = new JLabel("Atoles $45");
+        tiposAtole = new JLabel("(Choco, arroz, guayaba)");
+        tiposAtole.setFont(fuenteSerief);
+        tiposAtole.setOpaque(true);
+        tiposAtole.setBackground(colorCarnita);
+        tiposAtole.setBounds(38, 192, 170, 22);;
         nomAtole.setFont(fuenteSerief);
-        item.add(etiqAtole);
-        item.add(nomAtole);
-        item.add(butAtole);
-        panelMenus.add(item);
+        nomAtole.setOpaque(true);
+        nomAtole.setBackground(colorCarnita);
+        nomAtole.setBounds(68, 170, 80, 22);
+        panelMenus.add(tiposAtole);
+        panelMenus.add(nomAtole);
+        panelMenus.add(butAtole);
 
-        // item Tamal
-        item = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        etiqTamal = new JLabel();
-        etiqTamal.setIcon(tamalOax);
-        nomTamal = new JLabel("Tamales oaxaqueños - $" + String.format("%.2f", precioTamal));
+        nomTamal = new JLabel("Tamales Oaxaqueños $30");
         nomTamal.setFont(fuenteSerief);
-        item.add(etiqTamal);
-        item.add(nomTamal);
-        item.add(butTamal);
-        panelMenus.add(item);
+        nomTamal.setOpaque(true);
+        nomTamal.setBackground(colorCarnita);
+        nomTamal.setBounds(185, 170, 198, 22);
+        tiposTamal = new JLabel("(Mole, Verde)");
+        tiposTamal.setFont(fuenteSerief);
+        tiposTamal.setOpaque(true);
+        tiposTamal.setBackground(colorCarnita);
+        tiposTamal.setBounds(230, 192,110, 22);
+        panelMenus.add(tiposTamal);
+        panelMenus.add(nomTamal);
+        panelMenus.add(butTamal);
 
-        // item Tlayuda
-        item = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        etiqTlay = new JLabel();
-        etiqTlay.setIcon(tlayuyas);
-        nomTlay = new JLabel("Tlayudas - $" + String.format("%.2f", precioTlay));
+        nomTlay = new JLabel("Tlayudas $70");
         nomTlay.setFont(fuenteSerief);
-        item.add(etiqTlay);
-        item.add(nomTlay);
-        item.add(butTlay);
-        panelMenus.add(item);
+        nomTlay.setOpaque(true);
+        nomTlay.setBackground(colorCarnita);
+        nomTlay.setBounds(435, 181, 90, 22);
+        panelMenus.add(nomTlay);
+        panelMenus.add(butTlay);
+
+        //------------------Espacio de comidas--------------------
+        etiqComidas = new JLabel("Comidas");
+        etiqComidas.setFont(fuenteSerief30);
+        etiqComidas.setBounds(230, 258, 130, 35);
+        etiqComidas.setAlignmentX(CENTER_ALIGNMENT);
+        etiqComidas.setOpaque(true);
+        etiqComidas.setBackground(colorCarnita);
+        panelMenus.add(etiqComidas);
+
+        //instanciamos imagenes de las comidas
+        sopaPiedra = new ImageIcon(new ImageIcon("sopaPiedra.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+        chapulines = new ImageIcon(new ImageIcon("chapulines.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+        cecina = new ImageIcon(new ImageIcon("cecina.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+
+        etiqSopa = new JLabel(); // img sopa de piedra
+        etiqSopa.setIcon(sopaPiedra);
+        etiqSopa.setBounds(50,305, 128, 96);
+        etiqSopa.setAlignmentX(LEFT_ALIGNMENT);
+        panelMenus.add(etiqSopa);
+
+        etiquChapulin = new JLabel(); // img chapulines
+        etiquChapulin.setIcon(chapulines);
+        etiquChapulin.setBounds(230,305, 128, 96);
+        panelMenus.add(etiquChapulin);
+
+        etiqCecina = new JLabel(); // img cecina
+        etiqCecina.setIcon(cecina);
+        etiqCecina.setBounds(410,305, 128, 96);
+        panelMenus.add(etiqCecina);
+
+        // instanciamos botones para ordenar cada  comida
+        butSopa = new JButton("Ordenar");
+        butSopa.setFont(fuenteSerief);
+        butSopa.setBackground(colorVerdeOscuro);
+        butSopa.setBounds(70, 437, 100, 25);
+        butSopa.addActionListener(this);
+        butChapulin = new JButton("Ordenar");
+        butChapulin.setFont(fuenteSerief);
+        butChapulin.setBackground(colorVerdeOscuro);
+        butChapulin.setBounds(250, 437, 100, 25);
+        butChapulin.addActionListener(this);
+        butCecina = new JButton("Ordenar");
+        butCecina.setFont(fuenteSerief);
+        butCecina.setBackground(colorVerdeOscuro);
+        butCecina.setBounds(430, 437, 100, 25);
+        butCecina.addActionListener(this);
+
+        // botones y etiquetas de cada platillo
+        nomSopa = new JLabel("Sopa de piedra $35");
+        nomSopa.setFont(fuenteSerief);
+        nomSopa.setOpaque(true);
+        nomSopa.setBackground(colorCarnita);
+        nomSopa.setBounds(40, 411, 140, 22);
+        panelMenus.add(nomSopa);
+        panelMenus.add(butSopa);
+
+        nomChapulin = new JLabel("Chapulines 40$");
+        nomChapulin.setFont(fuenteSerief);
+        nomChapulin.setOpaque(true);
+        nomChapulin.setBackground(colorCarnita);
+        nomChapulin.setBounds(240, 411, 110, 22);
+        panelMenus.add(nomChapulin);
+        panelMenus.add(butChapulin);
+
+        nomCecina = new JLabel("Cecina acompañada $50");
+        nomCecina.setFont(fuenteSerief);
+        nomCecina.setOpaque(true);
+        nomCecina.setBackground(colorCarnita);
+        nomCecina.setBounds(390, 411, 170, 22);
+        panelMenus.add(nomCecina);
+        panelMenus.add(butCecina);
+
+        //-------------------Espacio de cenas-------------------------
+
+        etiqCenas = new JLabel("Cenas");
+        etiqCenas.setFont(fuenteSerief30);
+        etiqCenas.setBounds(250, 472, 100, 35);
+        etiqCenas.setAlignmentX(CENTER_ALIGNMENT);
+        etiqCenas.setOpaque(true);
+        etiqCenas.setBackground(colorCarnita);
+        panelMenus.add(etiqCenas);
+
+        //instanciamos imagenes de las cenas
+        tasajo = new ImageIcon(new ImageIcon("tasajo.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+
+        etiqTasajo = new JLabel(); // img tasajo
+        etiqTasajo.setIcon(tasajo);
+        etiqTasajo.setBounds(410,535, 128, 96);
+        panelMenus.add(etiqTasajo);
+
+        // instanciamos botones para ordenar cada comida
+        butPanes = new JButton("Ordenar");
+        butPanes.setFont(fuenteSerief);
+        butPanes.setBackground(colorVerdeOscuro);
+        butPanes.setBounds(200, 531, 100, 25);
+        butPanes.addActionListener(this);
+        butTasajo = new JButton("Ordenar");
+        butTasajo.setFont(fuenteSerief);
+        butTasajo.setBackground(colorVerdeOscuro);
+        butTasajo.setBounds(200, 565, 100, 25);
+        butTasajo.addActionListener(this);
+        butChocolate = new JButton("Ordenar");
+        butChocolate.setFont(fuenteSerief);
+        butChocolate.setBackground(colorVerdeOscuro);
+        butChocolate.setBounds(200, 599, 100, 25);
+        butChocolate.addActionListener(this);
+
+        // botones y etiquetas de cada platillo
+        nomPanes = new JLabel("Panes de dulce $20");
+        nomPanes.setFont(fuenteSerief);
+        nomPanes.setOpaque(true);
+        nomPanes.setBackground(colorCarnita);
+        nomPanes.setBounds(40, 531, 140, 22);
+        panelMenus.add(nomPanes);
+        panelMenus.add(butPanes);
+
+        nomTasajo = new JLabel("Tasajo acompañado $50");
+        nomTasajo.setFont(fuenteSerief);
+        nomTasajo.setOpaque(true);
+        nomTasajo.setBackground(colorCarnita);
+        nomTasajo.setBounds(40, 565, 140, 22);
+        panelMenus.add(nomTasajo);
+        panelMenus.add(butTasajo);
+
+        nomChocolate = new JLabel("Chocolate caliente $25");
+        nomChocolate.setFont(fuenteSerief);
+        nomChocolate.setOpaque(true);
+        nomChocolate.setBackground(colorCarnita);
+        nomChocolate.setBounds(40, 599, 140, 22);
+        panelMenus.add(nomChocolate);
+        panelMenus.add(butChocolate);
 
         ventana.add(panelMenus);
         
         // panel de cuenta
         panelComida = new JPanel();
         panelComida.setPreferredSize(new Dimension(550, 750));
+        panelComida.setBounds(710, 5, 550, 675);
         panelComida.setBackground(new Color(248, 63, 169));
         panelComida.setLayout(new BorderLayout(10,10));
 
@@ -163,7 +319,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         
         butPagar.addActionListener(e -> {
             if (totalCuenta > 0) {
-                JOptionPane.showMessageDialog(this, "Total a pagar: $" + String.format("%.2f", totalCuenta));
+                JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
                 areaCuenta.setText("");
                 totalCuenta = 0.0;
                 etiquetaTotalCuenta.setText("Total: $0.00");
@@ -189,7 +345,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
 
     public void actionPerformed(ActionEvent event) {
         String cmd = event.getActionCommand();
-        if ("ATOLÉ".equals(cmd)) {
+        if ("ATOLE".equals(cmd)) {
             areaCuenta.append(String.format("Atol\t - $%.2f%n", precioAtole));
             totalCuenta += precioAtole;
         } else if ("TAMAL".equals(cmd)) {
@@ -198,7 +354,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         } else if ("TLAYUDA".equals(cmd)) {
             areaCuenta.append(String.format("Tlayuda - $%.2f%n", precioTlay));
             totalCuenta += precioTlay;
-        }
+        } 
         etiquetaTotalCuenta.setText("Total: $" + String.format("%.2f", totalCuenta));
     }
 }
