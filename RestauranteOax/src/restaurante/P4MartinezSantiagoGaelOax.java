@@ -144,7 +144,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         //------------------Espacio de comidas--------------------
         etiqComidas = new JLabel("Comidas");
         etiqComidas.setFont(fuenteSerief30);
-        etiqComidas.setBounds(200, 310, 160, 35);
+        etiqComidas.setBounds(230, 258, 130, 35);
         etiqComidas.setAlignmentX(CENTER_ALIGNMENT);
         etiqComidas.setOpaque(true);
         etiqComidas.setBackground(colorCarnita);
@@ -157,39 +157,43 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
 
         etiqSopa = new JLabel(); // img sopa de piedra
         etiqSopa.setIcon(sopaPiedra);
-        etiqSopa.setBounds(30,80, 500, 500);
+        etiqSopa.setBounds(50,305, 128, 96);
         etiqSopa.setAlignmentX(LEFT_ALIGNMENT);
         panelMenus.add(etiqSopa);
 
         etiquChapulin = new JLabel(); // img chapulines
         etiquChapulin.setIcon(chapulines);
-        etiquChapulin.setBounds(30,80, 500, 500);
+        etiquChapulin.setBounds(230,305, 128, 96);
         panelMenus.add(etiquChapulin);
 
         etiqCecina = new JLabel(); // img cecina
         etiqCecina.setIcon(cecina);
-        etiqCecina.setBounds(30,80, 500, 500);
+        etiqCecina.setBounds(410,305, 128, 96);
         panelMenus.add(etiqCecina);
 
         // instanciamos botones para ordenar cada  comida
         butSopa = new JButton("Ordenar");
         butSopa.setFont(fuenteSerief);
         butSopa.setBackground(colorVerdeOscuro);
+        butSopa.setBounds(70, 437, 100, 25);
         butSopa.addActionListener(this);
         butChapulin = new JButton("Ordenar");
         butChapulin.setFont(fuenteSerief);
         butChapulin.setBackground(colorVerdeOscuro);
+        butChapulin.setBounds(250, 437, 100, 25);
         butChapulin.addActionListener(this);
         butCecina = new JButton("Ordenar");
         butCecina.setFont(fuenteSerief);
         butCecina.setBackground(colorVerdeOscuro);
+        butCecina.setBounds(430, 437, 100, 25);
         butCecina.addActionListener(this);
 
         // botones y etiquetas de cada platillo
-        nomSopa = new JLabel("Sopa de piedra \n (Plato grande 35$) \n (Plato chico $25)");
+        nomSopa = new JLabel("Sopa de piedra $35");
         nomSopa.setFont(fuenteSerief);
         nomSopa.setOpaque(true);
         nomSopa.setBackground(colorCarnita);
+        nomSopa.setBounds(40, 411, 140, 22);
         panelMenus.add(nomSopa);
         panelMenus.add(butSopa);
 
@@ -197,6 +201,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         nomChapulin.setFont(fuenteSerief);
         nomChapulin.setOpaque(true);
         nomChapulin.setBackground(colorCarnita);
+        nomChapulin.setBounds(240, 411, 110, 22);
         panelMenus.add(nomChapulin);
         panelMenus.add(butChapulin);
 
@@ -204,6 +209,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         nomCecina.setFont(fuenteSerief);
         nomCecina.setOpaque(true);
         nomCecina.setBackground(colorCarnita);
+        nomCecina.setBounds(390, 411, 170, 22);
         panelMenus.add(nomCecina);
         panelMenus.add(butCecina);
 
