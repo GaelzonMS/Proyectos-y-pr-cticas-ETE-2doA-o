@@ -25,6 +25,10 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     private JLabel etiqSopa, etiqCecina, etiquChapulin, etiqComidas, nomSopa, nomCecina, nomChapulin;
     private JButton butSopa, butCecina, butChapulin;
 
+    private ImageIcon panes, tasajo, chocolate;
+    private JLabel etiqPanes, etiqTasajo, etiqChocolate, etiqCenas, nomPanes, nomTasajo, nomChocolate;
+    private JButton butPanes, butTasajo, butChocolate;
+
     public static void main(String[] args) {
         P4MartinezSantiagoGaelOax marco = new P4MartinezSantiagoGaelOax();
         marco.setSize(1920, 1080);
@@ -131,7 +135,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         chapulines = new ImageIcon(new ImageIcon("chapulines.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
         cecina = new ImageIcon(new ImageIcon("cecina.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
 
-        etiqSopa = new JLabel(); // img atoles
+        etiqSopa = new JLabel(); // img sopa de piedra
         etiqSopa.setIcon(sopaPiedra);
         etiqSopa.setBounds(30,80, 500, 500);
         etiqSopa.setAlignmentX(LEFT_ALIGNMENT);
@@ -185,7 +189,70 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
 
         //-------------------Espacio de cenas-------------------------
 
-        
+        etiqCenas = new JLabel("Cenas");
+        etiqCenas.setFont(fuenteSerief30);
+        etiqCenas.setBounds(80, 40, 250, 20);
+        etiqCenas.setAlignmentX(CENTER_ALIGNMENT);
+        etiqCenas.setOpaque(true);
+        etiqCenas.setBackground(colorCarnita);
+        panelMenus.add(etiqCenas);
+
+        //instanciamos imagenes de las comidas
+        panes = new ImageIcon(new ImageIcon("panes.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+        tasajo = new ImageIcon(new ImageIcon("tasajo.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+        chocolate = new ImageIcon(new ImageIcon("chocoalte.jpg").getImage().getScaledInstance(128, 96, Image.SCALE_DEFAULT));
+
+        etiqPanes = new JLabel(); // img panes
+        etiqPanes.setIcon(panes);
+        etiqPanes.setBounds(30,80, 500, 500);
+        etiqPanes.setAlignmentX(LEFT_ALIGNMENT);
+        panelMenus.add(etiqPanes);
+
+        etiqTasajo = new JLabel(); // img tasajo
+        etiqTasajo.setIcon(tasajo);
+        etiqTasajo.setBounds(30,80, 500, 500);
+        panelMenus.add(etiqTasajo);
+
+        etiqChocolate = new JLabel(); // img chocolate
+        etiqChocolate.setIcon(chocolate);
+        etiqChocolate.setBounds(30,80, 500, 500);
+        panelMenus.add(etiqChocolate);
+
+        // instanciamos botones para ordenar cada comida
+        butPanes = new JButton("Ordenar");
+        butPanes.setFont(fuenteSerief);
+        butPanes.setBackground(colorVerdeOscuro);
+        butPanes.addActionListener(this);
+        butTasajo = new JButton("Ordenar");
+        butTasajo.setFont(fuenteSerief);
+        butTasajo.setBackground(colorVerdeOscuro);
+        butTasajo.addActionListener(this);
+        butChocolate = new JButton("Ordenar");
+        butChocolate.setFont(fuenteSerief);
+        butChocolate.setBackground(colorVerdeOscuro);
+        butChocolate.addActionListener(this);
+
+        // botones y etiquetas de cada platillo
+        nomPanes = new JLabel("Panes de dulce $20");
+        nomPanes.setFont(fuenteSerief);
+        nomPanes.setOpaque(true);
+        nomPanes.setBackground(colorCarnita);
+        panelMenus.add(nomPanes);
+        panelMenus.add(butPanes);
+
+        nomTasajo = new JLabel("Tasajo acompañado $50");
+        nomTasajo.setFont(fuenteSerief);
+        nomTasajo.setOpaque(true);
+        nomTasajo.setBackground(colorCarnita);
+        panelMenus.add(nomTasajo);
+        panelMenus.add(butTasajo);
+
+        nomChocolate = new JLabel("Chocolate caliente $25");
+        nomChocolate.setFont(fuenteSerief);
+        nomChocolate.setOpaque(true);
+        nomChocolate.setBackground(colorCarnita);
+        panelMenus.add(nomChocolate);
+        panelMenus.add(butChocolate);
 
         ventana.add(panelMenus);
         panelComida = new JPanel();
