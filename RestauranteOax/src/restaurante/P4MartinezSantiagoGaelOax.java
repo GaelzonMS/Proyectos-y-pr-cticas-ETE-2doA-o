@@ -18,7 +18,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     private JPanel panelMenus, panelComida;
 
     private ImageIcon atole, tamalOax, tlayuyas;
-    private JLabel etiqAtole, etiqTamal, etiqTlay, etiquetaDesayuno, nomAtole, nomTamal, nomTlay;
+    private JLabel etiqAtole, etiqTamal, etiqTlay, etiquetaDesayuno, nomAtole, nomTamal, nomTlay, tiposAtole, tiposTamal;
     private JButton butAtole, butTamal, butTlay;
 
     private ImageIcon sopaPiedra, cecina, chapulines;
@@ -41,8 +41,8 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container ventana = getContentPane();
         ventana.setBackground(new Color(1, 101, 231));
-        ventana.setLayout(new FlowLayout());
-        //setLayout(null);
+        
+        setLayout(null);
 
         // instanciamos colores y fuentes a ocupar
         Font fuenteSerief  = new Font("Serief",Font.BOLD,14);
@@ -54,11 +54,13 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus = new JPanel();
         panelMenus.setPreferredSize(new Dimension(500, 750));
         panelMenus.setBackground(new Color(250, 155, 40));
+        panelMenus.setBounds(120, 35, 580, 620);
+        panelMenus.setLayout(null);
 
         //---------------Espacio de desayunos------------------
         etiquetaDesayuno = new JLabel("Desayunos");
         etiquetaDesayuno.setFont(fuenteSerief30);
-        etiquetaDesayuno.setBounds(80, 40, 250, 20);
+        etiquetaDesayuno.setBounds(210, 18, 170, 35);
         etiquetaDesayuno.setAlignmentX(CENTER_ALIGNMENT);
         etiquetaDesayuno.setOpaque(true);
         etiquetaDesayuno.setBackground(colorCarnita);
@@ -71,46 +73,63 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
 
         etiqAtole = new JLabel(); // img atoles
         etiqAtole.setIcon(atole);
-        etiqAtole.setBounds(30,80, 500, 500);
+        etiqAtole.setBounds(50,65, 128, 96);
         etiqAtole.setAlignmentX(LEFT_ALIGNMENT);
         panelMenus.add(etiqAtole);
 
         etiqTamal = new JLabel(); // img tamales oaxaqueños
         etiqTamal.setIcon(tamalOax);
-        etiqTamal.setBounds(30,80, 500, 500);
+        etiqTamal.setBounds(230,65, 128, 96);
         panelMenus.add(etiqTamal);
 
         etiqTlay = new JLabel(); //tlayudas
         etiqTlay.setIcon(tlayuyas);
-        etiqTlay.setBounds(30,80, 500, 500);
+        etiqTlay.setBounds(410,65, 128, 96);
         panelMenus.add(etiqTlay);
 
         // instanciamos botones para ordenar cada desayuno
         butAtole = new JButton("Ordenar");
         butAtole.setFont(fuenteSerief);
         butAtole.setBackground(colorVerdeOscuro);
+        butAtole.setBounds(68, 220, 100, 25);
         butAtole.addActionListener(this);
         butTamal = new JButton("Ordenar");
         butTamal.setFont(fuenteSerief);
         butTamal.setBackground(colorVerdeOscuro);
+        butTamal.setBounds(248, 220, 100, 25);
         butTamal.addActionListener(this);
         butTlay = new JButton("Ordenar");
         butTlay.setFont(fuenteSerief);
         butTlay.setBackground(colorVerdeOscuro);
+        butTlay.setBounds(428, 220, 100, 25);
         butTlay.addActionListener(this);
 
         // botones y etiquetas de cada platillo
-        nomAtole = new JLabel("Atoles \n (chocolate, arroz, guayaba)");
+        nomAtole = new JLabel("Atoles $35");
+        tiposAtole = new JLabel("(Choco, arroz, guayaba)");
+        tiposAtole.setFont(fuenteSerief);
+        tiposAtole.setOpaque(true);
+        tiposAtole.setBackground(colorCarnita);
+        tiposAtole.setBounds(38, 192, 170, 22);;
         nomAtole.setFont(fuenteSerief);
         nomAtole.setOpaque(true);
         nomAtole.setBackground(colorCarnita);
+        nomAtole.setBounds(68, 170, 80, 22);
+        panelMenus.add(tiposAtole);
         panelMenus.add(nomAtole);
         panelMenus.add(butAtole);
 
-        nomTamal = new JLabel("Tamales Oaxaqueños \n (verde, mole, dulce)");
+        nomTamal = new JLabel("Tamales Oaxaqueños $35");
         nomTamal.setFont(fuenteSerief);
         nomTamal.setOpaque(true);
         nomTamal.setBackground(colorCarnita);
+        nomTamal.setBounds(185, 170, 198, 22);
+        tiposTamal = new JLabel("(Mole, Verde)");
+        tiposTamal.setFont(fuenteSerief);
+        tiposTamal.setOpaque(true);
+        tiposTamal.setBackground(colorCarnita);
+        tiposTamal.setBounds(230, 192,110, 22);
+        panelMenus.add(tiposTamal);
         panelMenus.add(nomTamal);
         panelMenus.add(butTamal);
 
@@ -118,13 +137,14 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         nomTlay.setFont(fuenteSerief);
         nomTlay.setOpaque(true);
         nomTlay.setBackground(colorCarnita);
+        nomTlay.setBounds(445, 181, 65, 22);
         panelMenus.add(nomTlay);
         panelMenus.add(butTlay);
 
         //------------------Espacio de comidas--------------------
         etiqComidas = new JLabel("Comidas");
         etiqComidas.setFont(fuenteSerief30);
-        etiqComidas.setBounds(80, 40, 250, 20);
+        etiqComidas.setBounds(200, 310, 160, 35);
         etiqComidas.setAlignmentX(CENTER_ALIGNMENT);
         etiqComidas.setOpaque(true);
         etiqComidas.setBackground(colorCarnita);
