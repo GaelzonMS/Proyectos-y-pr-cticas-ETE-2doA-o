@@ -1,13 +1,13 @@
 package restaurante;
 
 /**
- * Programa: Calculadora de IMC
- * Autores: Martínez Santiago Gael 
+ * Programa: Antojitos oaxacos p6
+ * Autores: Martí­nez Santiago Gael 
  * 			Chávez Núñez Citlalli
  * 			
- * Fecha: 03/nov/25
- * Descripción: Consiste en un cuestionario que te solicita tu
- * peso, estatura y nombre, y con eso dar tu IMC.
+ * Fecha: 18/nov/25
+ * Descripción: Sistema de un restaurante en donde se puede ordenar tu pedido, se crea una factura que muestra el precio con 
+ * y sin IVA, y se puede seleccionar el metodo de pago
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -23,9 +23,17 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     private JButton butAtole, butTamal, butTlay;
 
     // Cuenta y precios
+    private String strDineroDado;
+    private double dineroDado = 0.0;
     private double precioAtole = 45.0;
     private double precioTamal = 30.0;
     private double precioTlay = 70.0;
+    private double precioSopa = 35.0;
+    private double precioChapulin = 40.0;
+    private double precioCecina = 50.0;
+    private double precioPan = 20.0;
+    private double precioTasajo = 50.0;
+    private double precioChocolate = 25.0;
     private double totalCuenta = 0.0;
     private JTextArea areaCuenta;
     private JLabel etiquetaTotalCuenta;
@@ -41,6 +49,10 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     private JLabel etiqTasajo, etiqCenas, nomPanes, nomTasajo, nomChocolate;
     private JButton butPanes, butTasajo, butChocolate;
 
+    //objetos para metodos de pago
+    private ButtonGroup metodosDispo;
+    private  JRadioButton butEfectivo, butTarjeta, butTransferencia;
+    
     public static void main(String[] args) {
         P4MartinezSantiagoGaelOax marco = new P4MartinezSantiagoGaelOax();
         marco.setSize(1920, 1080);
@@ -63,7 +75,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         Color colorCarnita = new Color(255, 222, 166);
         Color colorVerdeOscuro = new Color(88, 138, 39);
 
-        // instanciamos el panel de menus y añadimos elementos
+        // instanciamos el panel de menus y aÃ±adimos elementos
         panelMenus = new JPanel();
         panelMenus.setPreferredSize(new Dimension(500, 750));
         panelMenus.setBackground(new Color(250, 155, 40));
@@ -90,7 +102,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         etiqAtole.setAlignmentX(LEFT_ALIGNMENT);
         panelMenus.add(etiqAtole);
 
-        etiqTamal = new JLabel(); // img tamales oaxaqueños
+        etiqTamal = new JLabel(); // img tamales oaxaqueÃ±os
         etiqTamal.setIcon(tamalOax);
         etiqTamal.setBounds(230,65, 128, 96);
         panelMenus.add(etiqTamal);
@@ -135,7 +147,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus.add(nomAtole);
         panelMenus.add(butAtole);
 
-        nomTamal = new JLabel("Tamales Oaxaqueños $30");
+        nomTamal = new JLabel("Tamales OaxaqueÃ±os $30");
         nomTamal.setFont(fuenteSerief);
         nomTamal.setOpaque(true);
         nomTamal.setBackground(colorCarnita);
@@ -192,16 +204,19 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         butSopa.setFont(fuenteSerief);
         butSopa.setBackground(colorVerdeOscuro);
         butSopa.setBounds(70, 437, 100, 25);
+        butSopa.setActionCommand("SOPA");
         butSopa.addActionListener(this);
         butChapulin = new JButton("Ordenar");
         butChapulin.setFont(fuenteSerief);
         butChapulin.setBackground(colorVerdeOscuro);
         butChapulin.setBounds(250, 437, 100, 25);
+        butChapulin.setActionCommand("CHAPULIN");
         butChapulin.addActionListener(this);
         butCecina = new JButton("Ordenar");
         butCecina.setFont(fuenteSerief);
         butCecina.setBackground(colorVerdeOscuro);
         butCecina.setBounds(430, 437, 100, 25);
+        butCecina.setActionCommand("CECINA");
         butCecina.addActionListener(this);
 
         // botones y etiquetas de cada platillo
@@ -221,7 +236,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus.add(nomChapulin);
         panelMenus.add(butChapulin);
 
-        nomCecina = new JLabel("Cecina acompañada $50");
+        nomCecina = new JLabel("Cecina acompaÃ±ada $50");
         nomCecina.setFont(fuenteSerief);
         nomCecina.setOpaque(true);
         nomCecina.setBackground(colorCarnita);
@@ -252,16 +267,19 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         butPanes.setFont(fuenteSerief);
         butPanes.setBackground(colorVerdeOscuro);
         butPanes.setBounds(200, 531, 100, 25);
+        butPanes.setActionCommand("PANES");
         butPanes.addActionListener(this);
         butTasajo = new JButton("Ordenar");
         butTasajo.setFont(fuenteSerief);
         butTasajo.setBackground(colorVerdeOscuro);
         butTasajo.setBounds(200, 565, 100, 25);
+        butTasajo.setActionCommand("TASAJO");
         butTasajo.addActionListener(this);
         butChocolate = new JButton("Ordenar");
         butChocolate.setFont(fuenteSerief);
         butChocolate.setBackground(colorVerdeOscuro);
         butChocolate.setBounds(200, 599, 100, 25);
+        butChocolate.setActionCommand("CHOCOLATE");
         butChocolate.addActionListener(this);
 
         // botones y etiquetas de cada platillo
@@ -273,7 +291,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus.add(nomPanes);
         panelMenus.add(butPanes);
 
-        nomTasajo = new JLabel("Tasajo acompañado $50");
+        nomTasajo = new JLabel("Tasajo acompaÃ±ado $50");
         nomTasajo.setFont(fuenteSerief);
         nomTasajo.setOpaque(true);
         nomTasajo.setBackground(colorCarnita);
@@ -294,7 +312,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         // panel de cuenta
         panelComida = new JPanel();
         panelComida.setPreferredSize(new Dimension(550, 750));
-        panelComida.setBounds(710, 5, 550, 675);
+        panelComida.setBounds(710, 5, 550, 690);
         panelComida.setBackground(new Color(248, 63, 169));
         panelComida.setLayout(new BorderLayout(10,10));
 
@@ -316,27 +334,29 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
 
         butPagar = new JButton("Pagar");
         butPagar.setFont(fuenteSerief);
+        butPagar.addActionListener(this);
+        butPagar.setActionCommand("PAGO");
         
-        butPagar.addActionListener(e -> {
-            if (totalCuenta > 0) {
-                JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
-                areaCuenta.setText("");
-                totalCuenta = 0.0;
-                etiquetaTotalCuenta.setText("Total: $0.00");
-            } else {
-                JOptionPane.showMessageDialog(this, "La cuenta está vacía.");
-            }
-        });
         abajo.add(butPagar);
 
         butLimpiar = new JButton("Limpiar");
         butLimpiar.setFont(fuenteSerief);
-        butLimpiar.addActionListener(e -> {
-            areaCuenta.setText("");
-            totalCuenta = 0.0;
-            etiquetaTotalCuenta.setText("Total: $0.00");
-        });
+        butLimpiar.setActionCommand("LIMPIAR");
+        butLimpiar.addActionListener(this);
         abajo.add(butLimpiar);
+        
+        //-----------------métodos de pago----------------
+        metodosDispo = new ButtonGroup();
+        butEfectivo = new JRadioButton("Efectivo");
+        metodosDispo.add(butEfectivo);
+        butTarjeta = new JRadioButton("Tarjeta");
+        metodosDispo.add(butTarjeta);
+        butTransferencia = new JRadioButton("Trans");
+        metodosDispo.add(butTransferencia);
+
+        abajo.add(butEfectivo);
+        abajo.add(butTarjeta);
+        abajo.add(butTransferencia);
 
         panelComida.add(abajo, BorderLayout.SOUTH);
 
@@ -345,8 +365,10 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
 
     public void actionPerformed(ActionEvent event) {
         String cmd = event.getActionCommand();
+        
+        // se le suma precio a la cuenta o se paga
         if ("ATOLE".equals(cmd)) {
-            areaCuenta.append(String.format("Atol\t - $%.2f%n", precioAtole));
+            areaCuenta.append(String.format("Atole\t - $%.2f%n", precioAtole));
             totalCuenta += precioAtole;
         } else if ("TAMAL".equals(cmd)) {
             areaCuenta.append(String.format("Tamal\t - $%.2f%n", precioTamal));
@@ -354,7 +376,42 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         } else if ("TLAYUDA".equals(cmd)) {
             areaCuenta.append(String.format("Tlayuda - $%.2f%n", precioTlay));
             totalCuenta += precioTlay;
+        } else if ("PAGO".equals(cmd)){
+            if (totalCuenta > 0) {
+            	if (butTarjeta.isSelected()){ // procedimiento a seguir con efectivo
+            		strDineroDado = JOptionPane.showInputDialog(null, "Escribe el dinero a dar:");            	
+            	}
+                JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
+                areaCuenta.setText("");
+                totalCuenta = 0.0;
+                etiquetaTotalCuenta.setText("Total: $0.00");
+            } else {
+                JOptionPane.showMessageDialog(this, "La cuenta está vacía.");
+            }
+        }else if ("LIMPIAR".equals(cmd)){
+            areaCuenta.setText("");
+            totalCuenta = 0.0;
+            etiquetaTotalCuenta.setText("Total: $0.00");
+        } else if ("CHAPULIN".equals(cmd)){
+            areaCuenta.append(String.format("Chapulines\t - $%.2f%n", precioChapulin));
+            totalCuenta += precioChapulin;
+        }else if ("SOPA".equals(cmd)){
+            areaCuenta.append(String.format("Sopa de piedra\t - $%.2f%n", precioSopa));
+            totalCuenta += precioSopa;
+        } else if ("CECINA".equals(cmd)){
+            areaCuenta.append(String.format("Cecina acompañada\t - $%.2f%n", precioCecina));
+            totalCuenta += precioCecina;
+        } else if ("PANES".equals(cmd)){
+            areaCuenta.append(String.format("Pan de dulce\t - $%.2f%n", precioPan));
+            totalCuenta += precioPan;
+        } else if ("TASAJO".equals(cmd)){
+            areaCuenta.append(String.format("Tasajo acompañado\t - $%.2f%n", precioTasajo));
+            totalCuenta += precioTasajo;
+        } else if ("CHOCOLATE".equals(cmd)){
+            areaCuenta.append(String.format("Chocolate caliente\t - $%.2f%n", precioChocolate));
+            totalCuenta += precioChocolate;
         } 
+        
         etiquetaTotalCuenta.setText("Total: $" + String.format("%.2f", totalCuenta));
     }
 }
