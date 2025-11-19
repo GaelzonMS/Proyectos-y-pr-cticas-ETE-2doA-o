@@ -5,7 +5,7 @@ package restaurante;
  * Autores: Martí­nez Santiago Gael 
  * 			Chávez Núñez Citlalli
  * 			
- * Fecha: 18/nov/25
+ * Fecha: 19/nov/25
  * Descripción: Sistema de un restaurante en donde se puede ordenar tu pedido, se crea una factura que muestra el precio con 
  * y sin IVA, y se puede seleccionar el metodo de pago
  */
@@ -69,6 +69,14 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         
         setLayout(null);
 
+        // título principal
+        JLabel tituloPrincipal = new JLabel("Antojitos Oaxacos P6", SwingConstants.CENTER);
+        tituloPrincipal.setFont(new Font("Serief", Font.BOLD, 36));
+        tituloPrincipal.setOpaque(true);
+        tituloPrincipal.setBackground(new Color(255, 222, 166));
+        tituloPrincipal.setBounds(0, 5, 1280, 55);
+        getContentPane().add(tituloPrincipal);
+        
         // instanciamos colores y fuentes a ocupar
         Font fuenteSerief  = new Font("Serief",Font.BOLD,14);
         Font fuenteSerief30  = new Font("Serief",Font.BOLD,30);
@@ -79,7 +87,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus = new JPanel();
         panelMenus.setPreferredSize(new Dimension(500, 750));
         panelMenus.setBackground(new Color(250, 155, 40));
-        panelMenus.setBounds(120, 5, 580, 675);
+        panelMenus.setBounds(120, 70, 580, 610);
         panelMenus.setLayout(null);
 
         //---------------Espacio de desayunos------------------
@@ -312,7 +320,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         // panel de cuenta
         panelComida = new JPanel();
         panelComida.setPreferredSize(new Dimension(550, 750));
-        panelComida.setBounds(710, 5, 550, 690);
+        panelComida.setBounds(710, 70, 550, 610);
         panelComida.setBackground(new Color(248, 63, 169));
         panelComida.setLayout(new BorderLayout(10,10));
 
@@ -387,11 +395,18 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                         JOptionPane.showMessageDialog(this, "La cantidad ingresada es incorrecta");
                     }            	
             	} else if (butTarjeta.isSelected()){
-                    String tipoTarjeta = JOptionPane.showInputDialog(null, "Tipo de tarjeta: Efectivo(E) o Débito(D)");
-                    if (tipoTarjeta == "E" || tipoTarjeta == "D"){
-                        JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
-                    } else{
-                        JOptionPane.showMessageDialog(this, "El tipo de tarjeta es inválido");
+                    String tipoTarjeta = JOptionPane.showInputDialog(null, "Tipo de tarjeta: Crédito (C) o Débito (D)");
+                    if (tipoTarjeta != null) {
+                        tipoTarjeta = tipoTarjeta.trim();
+                        if (tipoTarjeta.equalsIgnoreCase("D") || tipoTarjeta.equalsIgnoreCase("C")) {
+                            JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta)
+                                    + "\n IVA: $" + String.format("%.2f", totalCuenta * 0.16)
+                                    + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta * 0.16));
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El tipo de tarjeta es inválido");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Operación cancelada");
                     }
                 } else if (butTransferencia.isSelected()){
                     String numTransferencia = JOptionPane.showInputDialog(null, "Ingrese el número de transferencia 342452");
