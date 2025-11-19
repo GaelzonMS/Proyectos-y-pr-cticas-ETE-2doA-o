@@ -147,7 +147,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus.add(nomAtole);
         panelMenus.add(butAtole);
 
-        nomTamal = new JLabel("Tamales OaxaqueÃ±os $30");
+        nomTamal = new JLabel("Tamales Oaxaqueños $30");
         nomTamal.setFont(fuenteSerief);
         nomTamal.setOpaque(true);
         nomTamal.setBackground(colorCarnita);
@@ -236,7 +236,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus.add(nomChapulin);
         panelMenus.add(butChapulin);
 
-        nomCecina = new JLabel("Cecina acompaÃ±ada $50");
+        nomCecina = new JLabel("Cecina acompañada $50");
         nomCecina.setFont(fuenteSerief);
         nomCecina.setOpaque(true);
         nomCecina.setBackground(colorCarnita);
@@ -291,7 +291,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         panelMenus.add(nomPanes);
         panelMenus.add(butPanes);
 
-        nomTasajo = new JLabel("Tasajo acompaÃ±ado $50");
+        nomTasajo = new JLabel("Tasajo acompañado $50");
         nomTasajo.setFont(fuenteSerief);
         nomTasajo.setOpaque(true);
         nomTasajo.setBackground(colorCarnita);
@@ -378,10 +378,29 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
             totalCuenta += precioTlay;
         } else if ("PAGO".equals(cmd)){
             if (totalCuenta > 0) {
-            	if (butTarjeta.isSelected()){ // procedimiento a seguir con efectivo
-            		strDineroDado = JOptionPane.showInputDialog(null, "Escribe el dinero a dar:");            	
-            	}
-                JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
+            	if (butEfectivo.isSelected()){ // procedimiento a seguir con efectivo
+            		strDineroDado = JOptionPane.showInputDialog(null, "Escribe el dinero a dar:");
+                    if (isNumeric(strDineroDado)){
+                        dineroDado = Double.parseDouble(strDineroDado);
+                        JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16) + "\nRecibo: $" + String.format("%.2f", dineroDado) + "\nCambio: $" + String.format("%.2f", dineroDado - totalCuenta));
+                    } else{
+                        JOptionPane.showMessageDialog(this, "La cantidad ingresada es incorrecta");
+                    }            	
+            	} else if (butTarjeta.isSelected()){
+                    String tipoTarjeta = JOptionPane.showInputDialog(null, "Tipo de tarjeta: Efectivo(E) o Débito(D)");
+                    if (tipoTarjeta == "E" || tipoTarjeta == "D"){
+                        JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
+                    } else{
+                        JOptionPane.showMessageDialog(this, "El tipo de tarjeta es inválido");
+                    }
+                } else if (butTransferencia.isSelected()){
+                    String numTransferencia = JOptionPane.showInputDialog(null, "Ingrese el número de transferencia 342452");
+                    if (isNumeric(numTransferencia) && Double.parseDouble(numTransferencia) == 342452){
+                        JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No seleccionaste un método de pago");
+                }
                 areaCuenta.setText("");
                 totalCuenta = 0.0;
                 etiquetaTotalCuenta.setText("Total: $0.00");
@@ -413,5 +432,21 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
         } 
         
         etiquetaTotalCuenta.setText("Total: $" + String.format("%.2f", totalCuenta));
+    }
+
+    // método para validar que se ingresen datos correctos
+    public static boolean isNumeric (String cadena){
+        try{
+            double d= Double.parseDouble(cadena);
+            if (d<=0){
+                JOptionPane.showMessageDialog(null,"el valor es negativo");
+                return false;
+            }
+        }
+        catch (NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null,  "El valor no es numérico");
+            return false;
+        }
+        return true;
     }
 }
