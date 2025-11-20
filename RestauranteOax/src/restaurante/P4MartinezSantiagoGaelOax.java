@@ -399,9 +399,23 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                     if (tipoTarjeta != null) {
                         tipoTarjeta = tipoTarjeta.trim();
                         if (tipoTarjeta.equalsIgnoreCase("D") || tipoTarjeta.equalsIgnoreCase("C")) {
-                            JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta)
-                                    + "\n IVA: $" + String.format("%.2f", totalCuenta * 0.16)
-                                    + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta * 0.16));
+                            // pedir número de tarjeta de 16 dígitos
+                            String numTarjeta = JOptionPane.showInputDialog(null, "Ingrese número de tarjeta (16 dígitos):");
+                            if (numTarjeta != null) {
+                                numTarjeta = numTarjeta.trim();
+                                if (numTarjeta.matches("\\d{16}")) {
+                                    String nombreTipo = tipoTarjeta.equalsIgnoreCase("C") ? "Crédito" : "Débito";
+                                    JOptionPane.showMessageDialog(this,
+                                            "Método: Tarjeta de" + nombreTipo +
+                                            "\nSubtotal: $" + String.format("%.2f", totalCuenta) +
+                                            "\nIVA: $" + String.format("%.2f", totalCuenta * 0.16) +
+                                            "\nTotal a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta * 0.16));
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Número de tarjeta inválido. Debe tener 16 dígitos numéricos.");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Operación cancelada");
+                            }
                         } else {
                             JOptionPane.showMessageDialog(this, "El tipo de tarjeta es inválido");
                         }
@@ -453,8 +467,12 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     public static boolean isNumeric (String cadena){
         try{
             double d= Double.parseDouble(cadena);
-            if (d<=0){
-                JOptionPane.showMessageDialog(null,"el valor es negativo");
+            if (d<0){
+                JOptionPane.showMessageDialog(null,"El valor es negativo");
+                return false;
+            }
+            if (d==0){
+                JOptionPane.showMessageDialog(null,"Escribiste 0 ");
                 return false;
             }
         }
