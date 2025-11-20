@@ -38,6 +38,8 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     private JTextArea areaCuenta;
     private JLabel etiquetaTotalCuenta;
     private JButton butLimpiar, butPagar;
+    private String rfcCliente;
+    private String direccionCliente;
 
     //objetos para las comidas
     private ImageIcon sopaPiedra, cecina, chapulines;
@@ -395,9 +397,18 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
             		strDineroDado = JOptionPane.showInputDialog(null, "Escribe el dinero a dar:");
                     if (isNumeric(strDineroDado)){
                         dineroDado = Double.parseDouble(strDineroDado);
+                        String nombreCliente = JOptionPane.showInputDialog(null, "Escribe tu nombre completo:");
+                        do{
+                            rfcCliente = JOptionPane.showInputDialog(null, "Escribe tu RFC (4 dígitos)");
+                        } while (rfcCliente.length() != 4);
+                        direccionCliente = JOptionPane.showInputDialog(null, "Escribe tu direccion");
                         JOptionPane.showMessageDialog(this,
-                            "Total: $" + String.format("%.2f", totalPagar) +
-                            "\nIVA: $" + String.format("%.2f", iva) +
+                            "----------------FACTURA------------------\n" +
+                            "A nombre de: " + nombreCliente +
+                            "\nDirección: " + direccionCliente +
+                            "\nRFC: " + rfcCliente +
+                            "\nTotal: $" + String.format("%.2f", totalPagar) +
+                            "\n\nIVA 16%: $" + String.format("%.2f", iva) +
                             "\nSubtotal: $" + String.format("%.2f", subtotal) +
                             "\nRecibo: $" + String.format("%.2f", dineroDado) +
                             "\nCambio: $" + String.format("%.2f", dineroDado - totalPagar));
@@ -405,7 +416,7 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                         JOptionPane.showMessageDialog(this, "La cantidad ingresada es incorrecta");
                     }            	
             	} else if (butTarjeta.isSelected()){
-                    String tipoTarjeta = JOptionPane.showInputDialog(null, "Tipo de tarjeta: Crédito (C) o Débito (D)");
+                    String tipoTarjeta = JOptionPane.showInputDialog(null, "Escribe C para crédito, escribe D para débito");
                     if (tipoTarjeta != null) {
                         tipoTarjeta = tipoTarjeta.trim();
                         if (tipoTarjeta.equalsIgnoreCase("D") || tipoTarjeta.equalsIgnoreCase("C")) {
@@ -414,8 +425,19 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                             if (numTarjeta != null) {
                                 numTarjeta = numTarjeta.trim();
                                 if (numTarjeta.matches("\\d{16}")) {
+                                    // datos finales para factura
+                                    String nombreCliente = JOptionPane.showInputDialog(null, "Escribe tu nombre completo:");
+                                    do{
+                                        rfcCliente = JOptionPane.showInputDialog(null, "Escribe tu RFC (4 dígitos)");
+                                    } while (rfcCliente.length() != 4);
+                                    direccionCliente = JOptionPane.showInputDialog(null, "Escribe tu direccion");
+                                    
                                     String nombreTipo = tipoTarjeta.equalsIgnoreCase("C") ? "Crédito" : "Débito";
                                     JOptionPane.showMessageDialog(this,
+                                    "----------------FACTURA------------------\n" +
+                                    "A nombre de: " + nombreCliente +
+                                    "\nDirección: " + direccionCliente +
+                                    "\nRFC: " + rfcCliente +
                                     "Método: Tarjeta de " + nombreTipo +
                                     "\nTotal: $" + String.format("%.2f", totalPagar) +
                                     "\nIVA: $" + String.format("%.2f", iva) +
@@ -435,7 +457,17 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                 } else if (butTransferencia.isSelected()){
                     String numTransferencia = JOptionPane.showInputDialog(null, "Ingrese el número de transferencia 342452");
                     if (isNumeric(numTransferencia) && Double.parseDouble(numTransferencia) == 342452){
+                        String nombreCliente = JOptionPane.showInputDialog(null, "Escribe tu nombre completo:");
+                        do{
+                            rfcCliente = JOptionPane.showInputDialog(null, "Escribe tu RFC (4 dígitos)");
+                        } while (rfcCliente.length() != 4);
+                        direccionCliente = JOptionPane.showInputDialog(null, "Escribe tu direccion");
+
                         JOptionPane.showMessageDialog(this,
+                            "----------------FACTURA------------------\n" +
+                            "A nombre de: " + nombreCliente +
+                            "\nDirección: " + direccionCliente +
+                            "\nRFC: " + rfcCliente +
                             "Total: $" + String.format("%.2f", totalPagar) +
                             "\nIVA: $" + String.format("%.2f", iva) +
                             "\nSubtotal: $" + String.format("%.2f", subtotal));
@@ -443,9 +475,6 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                 } else {
                     JOptionPane.showMessageDialog(this, "No seleccionaste un método de pago");
                 }
-                areaCuenta.setText("");
-                totalCuenta = 0.0;
-                etiquetaTotalCuenta.setText("Total: $0.00");
             } else {
                 JOptionPane.showMessageDialog(this, "La cuenta está vacía.");
             }
