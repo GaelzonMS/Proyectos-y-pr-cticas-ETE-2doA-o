@@ -372,6 +372,11 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent event) {
+        
+        double totalPagar = totalCuenta; //totalcuenta
+        double iva = totalPagar * 0.16;
+        double subtotal = totalPagar + iva; //Total pagar + iva
+
         String cmd = event.getActionCommand();
         
         // se le suma precio a la cuenta o se paga
@@ -390,7 +395,12 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
             		strDineroDado = JOptionPane.showInputDialog(null, "Escribe el dinero a dar:");
                     if (isNumeric(strDineroDado)){
                         dineroDado = Double.parseDouble(strDineroDado);
-                        JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16) + "\nRecibo: $" + String.format("%.2f", dineroDado) + "\nCambio: $" + String.format("%.2f", dineroDado - totalCuenta));
+                        JOptionPane.showMessageDialog(this,
+                            "Total: $" + String.format("%.2f", totalPagar) +
+                            "\nIVA: $" + String.format("%.2f", iva) +
+                            "\nSubtotal: $" + String.format("%.2f", subtotal) +
+                            "\nRecibo: $" + String.format("%.2f", dineroDado) +
+                            "\nCambio: $" + String.format("%.2f", dineroDado - totalPagar));
                     } else{
                         JOptionPane.showMessageDialog(this, "La cantidad ingresada es incorrecta");
                     }            	
@@ -406,10 +416,10 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                                 if (numTarjeta.matches("\\d{16}")) {
                                     String nombreTipo = tipoTarjeta.equalsIgnoreCase("C") ? "Crédito" : "Débito";
                                     JOptionPane.showMessageDialog(this,
-                                            "Método: Tarjeta de" + nombreTipo +
-                                            "\nSubtotal: $" + String.format("%.2f", totalCuenta) +
-                                            "\nIVA: $" + String.format("%.2f", totalCuenta * 0.16) +
-                                            "\nTotal a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta * 0.16));
+                                    "Método: Tarjeta de " + nombreTipo +
+                                    "\nTotal: $" + String.format("%.2f", totalPagar) +
+                                    "\nIVA: $" + String.format("%.2f", iva) +
+                                    "\nSubtotal: $" + String.format("%.2f", subtotal));
                                 } else {
                                     JOptionPane.showMessageDialog(this, "Número de tarjeta inválido. Debe tener 16 dígitos numéricos.");
                                 }
@@ -425,7 +435,10 @@ public class P4MartinezSantiagoGaelOax extends JFrame implements ActionListener 
                 } else if (butTransferencia.isSelected()){
                     String numTransferencia = JOptionPane.showInputDialog(null, "Ingrese el número de transferencia 342452");
                     if (isNumeric(numTransferencia) && Double.parseDouble(numTransferencia) == 342452){
-                        JOptionPane.showMessageDialog(this, "Subtotal: $" + String.format("%.2f", totalCuenta) + "\n IVA: $" + String.format("%.2f", totalCuenta*0.16) + "\n Total a pagar: $" + String.format("%.2f", totalCuenta + totalCuenta*0.16));
+                        JOptionPane.showMessageDialog(this,
+                            "Total: $" + String.format("%.2f", totalPagar) +
+                            "\nIVA: $" + String.format("%.2f", iva) +
+                            "\nSubtotal: $" + String.format("%.2f", subtotal));
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "No seleccionaste un método de pago");
